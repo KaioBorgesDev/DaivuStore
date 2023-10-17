@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.root {
+    -fx-background-radius: 20px;
+    -fx-border-radius: 20px;
+}
+
+.scroll .track{
+    -fx-background-color: #D9D9D9;
+}
+.scroll .thumb {
+    -fx-background-color: #7BAC69; /* Cor de fundo verde */
+}
+
+.painel{
+    -fx-background-radius: 0 20px 20px 0;
+    -fx-border-radius: 0 20px 20px 0;
+}
+
+.input{
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-background-color: transparent;
+    -fx-border-color: #7BAC69;
+}
+
+.input:focused{
+    -fx-border-color: #22640A;
+}
+
+.text{
+    -fx-font-weight: 800;
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-font-style: normal;
+    -fx-line-height: normal;
+}
+
+.buttonSign{
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #7BAC69 0%, rgba(53, 131, 25, 0.93) 100%);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 6, 0, 0, 4)
+}
+
+.buttonGoogle{
+    -fx-font-weight: 800;
+    -fx-font-family: 'Inter', sans-serif;
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0), 0, 0, 0, 0)
+}
+
+.buttonwhite{
+    -fx-border-radius: 6px;
+    -fx-background-radius: 6px;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.35), 6, 0, 0, 4)
+}

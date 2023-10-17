@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="539.0" prefWidth="870.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sprintjava.MainAdmController">
+   <children>
+      <ScrollPane focusTraversable="false" hbarPolicy="NEVER" layoutY="56.0" prefHeight="483.0" prefWidth="871.0" style="-fx-border-color: transparent; -fx-background-color: transparent;" styleClass="scroll" stylesheets="@main.css">
+         <content>
+            <FlowPane fx:id="containerC" prefHeight="483.0" prefWidth="871.0" prefWrapLength="600.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </FlowPane>
+         </content>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </ScrollPane>
+      <Label layoutX="225.0" layoutY="-7.0" style="-fx-font-weight: 700;" styleClass="text" stylesheets="@main.css" text="Manage Clients" textFill="#8bb57a">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

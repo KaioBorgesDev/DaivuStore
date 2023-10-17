@@ -1,0 +1,6 @@
+.check-box .box {
+           	-fx-background-color: white;
+           	-fx-border-color: black;
+           	-fx-border-radius: 3px;
+           	-fx-background-radius: 3px;
+           }

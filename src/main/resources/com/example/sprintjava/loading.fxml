@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #7BAC69;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sprintjava.HelloController">
+   <children>
+      <Label layoutX="264.0" layoutY="37.0" styleClass="text" text="DAIVU" textFill="WHITE">
+         <font>
+            <Font size="150.0" />
+         </font>
+      </Label>
+      <Label layoutX="443.0" layoutY="483.0" styleClass="text" text="Carregando..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="135.0" fitWidth="135.0" layoutX="439.0" layoutY="313.0">
+         <image>
+            <Image url="@../../../imgs/loading.gif" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

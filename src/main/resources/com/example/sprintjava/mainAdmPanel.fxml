@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="527.0" prefWidth="590.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.sprintjava.MainAdmController">
+   <children>
+      <Label layoutX="106.0" layoutY="4.0" prefHeight="88.0" prefWidth="399.0" styleClass="text" stylesheets="@main.css" text="WELCOME TO" textFill="#7bac69">
+         <font>
+            <Font size="57.5" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <Label layoutX="203.0" layoutY="73.0" prefHeight="88.0" prefWidth="184.0" styleClass="text" stylesheets="@main.css" text="DAIVU" textFill="#7bac69">
+         <font>
+            <Font size="57.5" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <Label alignment="CENTER" layoutX="1.0" layoutY="161.0" prefHeight="39.0" prefWidth="590.0" style="-fx-font-weight: 600;" styleClass="text" stylesheets="@main.css" text="Best perfume dealer in the world" textFill="#989a9e">
+         <font>
+            <Font size="27.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <Label layoutX="11.0" layoutY="203.0" prefHeight="149.0" prefWidth="568.0" style="-fx-font-weight: 800;" styleClass="text" stylesheets="@main.css" text="Our reseller has the best prices on the market, ensuring that you can indulge in your favorite scents without breaking the bank. We believe that luxury should be affordable, and we're here to make that a reality for you. Explore our collection today and experience the finest fragrances at unbeatable prices." textAlignment="CENTER" textFill="#b6b9be" wrapText="true">
+         <font>
+            <Font size="16.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </Label>
+      <Button layoutX="166.0" layoutY="484.0" mnemonicParsing="false" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" prefHeight="36.0" prefWidth="258.0" styleClass="buttonSign" stylesheets="@main.css" textFill="WHITE">
+         <font>
+            <Font />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="258.0" layoutY="491.0" onMouseEntered="#mouseEntered" onMouseExited="#mouseExited" styleClass="text" stylesheets="@main.css" text="Web Store" textFill="WHITE">
+         <font>
+            <Font size="15.5" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+   </children>
+</AnchorPane>
