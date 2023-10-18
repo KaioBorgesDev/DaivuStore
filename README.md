@@ -77,3 +77,14 @@ If you wish to contribute, follow these steps:
 3. Commit your changes: git commit -m 'Add my feature'.
 4. Push the branch: git push origin feature-my-feature.
 5. Open a Pull Request.
+
+## implementations to be made
+
+&#x2610; Login With Google Functionality<br>
+&#x2610; Forgot Password Functionality<br>
+&#x2610; Update User GUI Functionality<br>
+&#x2610; Change cart to BD for each Client<br>
+&#x2610; Account Configuration Functionality<br>
+&#x2610; Implement purchasing system<br>
+&#x2610; improve security<br>
+&#x2610; Optimize the code
