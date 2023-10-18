@@ -9,7 +9,7 @@ To run the code of this project, follow the steps below:
 1. Clone this repository to your local machine:
 
 ```bash
-git clone https://github.com/seu-usuario/loja-de-perfumes.git
+git clone https://github.com/lucasrealdev/DaivuStore.git
 ```
 
 2. Open the project in your IntelliJ IDEA development environment or convert it to your preferred IDE.
@@ -49,7 +49,13 @@ CREATE TABLE `produtos` (
 );
 ```
 
-5. Run the Main class to start the Perfume Store application.
+5. To manage and add products and customers you have to create a user manually in the database with the is_adm property with the value '1'
+
+```sql
+  INSERT INTO clientes (nome_de_usuario, email, senha, is_adm) VALUES ("AdministradorTeste", "Teste@gmail.com", "Teste@001", 1);
+```
+
+6. Run the Main class to start the Perfume Store application.
 
 ## Project Resources
 
