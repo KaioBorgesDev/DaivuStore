@@ -64,6 +64,19 @@ public class ClienteDAO implements DAO<Cliente> {
         }
     }
 
+    public boolean updateCodigo(Cliente cliente) {
+        String sql = "UPDATE clientes SET codigo = ? WHERE id = ?";
+        try (Connection connection = ConnectionDb.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, cliente.getCode());
+            statement.setLong(2, cliente.getId());
+            return statement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     @Override
     public boolean delete(Long id) {
         String sql = "DELETE FROM clientes WHERE id = ?";
@@ -100,7 +113,7 @@ public class ClienteDAO implements DAO<Cliente> {
             statement.setString(1, email);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next() && resultSet.getInt(1) > 0) {
-                    return true;
+                    return true ;
                 }
             }
         } catch (SQLException e) {
@@ -110,6 +123,8 @@ public class ClienteDAO implements DAO<Cliente> {
     }
 
     public Integer verificarLogin(String email, String senha) {
+        //PRECISA FAZER SOBRECARGA NO destinoID,
+
         String sql = "SELECT id FROM clientes WHERE email = ? AND senha = ?";
         try (Connection connection = ConnectionDb.getConnection();
             PreparedStatement statement = connection.prepareStatement(sql)) {
@@ -125,6 +140,24 @@ public class ClienteDAO implements DAO<Cliente> {
                 return null;
             }
         } catch(Exception e){
+            return null;
+        }
+    }
+
+    public Integer destinoCodigo(String email, String sql, String columnLabel) {
+        try (Connection connection = ConnectionDb.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+                statement.setString(1, email);
+                try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(columnLabel);
+                } else {
+                    return null;
+                }
+            } catch (Exception e) {
+                return null;
+            }
+        } catch (Exception e) {
             return null;
         }
     }

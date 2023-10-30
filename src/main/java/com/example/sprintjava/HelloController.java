@@ -3,9 +3,9 @@ package com.example.sprintjava;
 import com.example.components.Notifier;
 import com.example.components.VisiblePasswordFieldSkin;
 import com.example.dao.ClienteDAO;
+import com.example.dao.EmailSender;
 import com.example.entity.Cliente;
 import com.example.entity.IdUser;
-import com.example.entity.ProdutoCart;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -18,19 +18,22 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 public class HelloController implements Serializable{
     @FXML
@@ -63,13 +66,29 @@ public class HelloController implements Serializable{
     private Button eyeLogin;
     @FXML
     private CheckBox rememberMe;
+    @FXML
+    private Label code_email_label;
+    @FXML
+    private TextField code_tf;
+    @FXML
+    private TextField password;
+    @FXML
+    private Pane popup_code;
+    @FXML
+    private Pane popup_password;
+    @FXML
+    private ImageView loading_code;
 
+    private EmailSender emailSender = new EmailSender();
     private final String[] imagePaths = {"/imgs/perfume1.png", "/imgs/perfume2.png", "/imgs/perfume3.png"};
     private int currentImageIndex = 0;
     private FadeTransition fadeTransition;
     private final ClienteDAO clienteDAO = new ClienteDAO();
     private double xOffset = 0;
     private double yOffset = 0;
+
+    public HelloController() {
+    }
 
     @FXML
     private void initialize() {
@@ -95,6 +114,19 @@ public class HelloController implements Serializable{
 
         Platform.runLater(() -> {
             carregarLog();
+
+            if (code_tf != null){
+                UnaryOperator<TextFormatter.Change> filter = change -> {
+                    String newText = change.getControlNewText();
+                    if (Pattern.matches("[0-9]*", newText) && newText.length() <= 4) {
+                        return change;
+                    }
+                    return null;
+                };
+                TextFormatter<Integer> textFormatter = new TextFormatter<>(new IntegerStringConverter(), null, filter);
+                code_tf.setTextFormatter(textFormatter);
+            }
+
         });
     }
 
@@ -103,6 +135,16 @@ public class HelloController implements Serializable{
     private final FXMLLoader fxmlLoaderMainAdm = new FXMLLoader(HelloApplication.class.getResource("mainAdm.fxml"));
     private final FXMLLoader fxmlLoaderMainClient = new FXMLLoader(HelloApplication.class.getResource("mainClient.fxml"));
     private final FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("loading.fxml"));
+
+    @FXML
+    void closePopup() {
+        popup_code.setVisible(false);
+    }
+
+    @FXML
+    void closePopupPassword() {
+        popup_password.setVisible(false);
+    }
 
     @FXML
     void LoginClicked() {
@@ -229,6 +271,67 @@ public class HelloController implements Serializable{
         backgroundThread.start();
     }
 
+    @FXML
+    void forgotPassowordAction() {
+        loading_code.setVisible(true);
+        sendCode();
+    }
+
+    @FXML
+    void resend_code(){
+        sendCode();
+    }
+
+    @FXML
+    void confirm_password(){
+        String senha = password.getText();
+        if (senha.isBlank()){
+            showNotification("A senha não pode estar vazia.", false);
+            return;
+        }
+        if (!isStrongPassword(senha)) {
+            showNotification("Senha fraca. A senha deve incluir 8 caracteres, 1 letra maiuscula e um caracter especial.", false);
+            return;
+        }
+        String sql = "SELECT id FROM clientes WHERE email = ?";
+        Long id = Long.valueOf(clienteDAO.destinoCodigo(tfEmailLogin.getText(),sql,"id"));
+        Cliente cliente = clienteDAO.get(id);
+        cliente.setSenha(senha);
+        clienteDAO.update(cliente, null);
+        popup_password.setVisible(false);
+        showNotification("A sua senha foi alterada com sucesso!", true);
+    }
+
+    @FXML
+    void confirm_code(){
+        String sql = "SELECT id FROM clientes WHERE email = ?";
+        Long id = Long.valueOf(clienteDAO.destinoCodigo(tfEmailLogin.getText(),sql,"id"));
+        Cliente cliente = clienteDAO.get(id);
+
+        if (code_tf.getText().equals(cliente.getCode())){
+            showNotification("Codigo Confirmado com Sucesso!",true);
+            popup_code.setVisible(false);
+            popup_password.setVisible(true);
+        }
+        else{
+            showNotification("Codigo Invalido!",false);
+        }
+    }
+
+    private void sendCode(){
+        String to = tfEmailLogin.getText(); //Destino do Email
+
+        if (clienteDAO.verificarEmailExistente(to)){
+            emailSender.sendEmailAsync(to, loading_code);
+            code_email_label.setText(code_email_label.getText() + to);
+            popup_code.setVisible(true);
+        }else if(tfEmailLogin.getText().isEmpty()){
+            showNotification("Digite o Email Cadastrado No Login",false);
+        } else{
+            showNotification("Email inexistente, Verifique o Email", false);
+        }
+    }
+
     private void load(Stage stage2, FXMLLoader fxmlLoader){
         try {
             Scene scene = new Scene(fxmlLoader.load());
@@ -257,6 +360,7 @@ public class HelloController implements Serializable{
     private boolean isValidEmail(String email) {
         return email.matches("^[\\w.-]+@([\\w-]+\\.)+[A-Za-z]{2,4}$");
     }
+
     private boolean isStrongPassword(String senha) {
         if (senha.length() < 8) {
             return false;

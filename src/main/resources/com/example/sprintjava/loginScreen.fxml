@@ -160,6 +160,84 @@
             </cursor>
         </ImageView>
         <CheckBox fx:id="rememberMe" contentDisplay="TOP" layoutX="131.0" layoutY="352.0" mnemonicParsing="false" style="-fx-background-color: transparent; -fx-focus-traversable: false;" styleClass="text" stylesheets="@main.css" text="Remember me?" textFill="#989a9e" />
-        <Hyperlink fx:id="forgot" layoutX="279.0" layoutY="349.0" text="Forgot Password ?" textFill="#989a9e" />
+        <Hyperlink fx:id="forgot" layoutX="279.0" layoutY="349.0" onMouseClicked="#forgotPassowordAction" text="Forgot Password ?" textFill="#989a9e" />
+      <Pane fx:id="popup_password" layoutX="350.0" layoutY="180.0" prefHeight="240.0" prefWidth="300.0" style="-fx-background-color: #253158; -fx-border-radius: 10px; -fx-background-radius: 10px;" visible="false">
+         <children>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="267.0" layoutY="16.0" onMouseClicked="#closePopupPassword">
+               <image>
+                  <Image url="@../../../imgs/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <Label layoutX="98.0" layoutY="15.0" styleClass="text" stylesheets="@main.css" text="Reset Password" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.5" />
+               </font>
+            </Label>
+            <Label layoutX="37.0" layoutY="37.0" prefHeight="50.0" prefWidth="226.0" styleClass="text" stylesheets="@main.css" text="Please enter with your new password" textAlignment="CENTER" textFill="#989a9e" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="password" layoutX="75.0" layoutY="108.0" prefHeight="25.0" prefWidth="149.0" promptText="Password" />
+            <Button layoutX="75.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#confirm_password" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #008eff;" styleClass="buttonSign" stylesheets="@main.css" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Pane>
+      <Pane fx:id="popup_code" layoutX="350.0" layoutY="193.0" prefHeight="240.0" prefWidth="300.0" style="-fx-background-color: #253158; -fx-border-radius: 10px; -fx-background-radius: 10px;" visible="false">
+         <children>
+            <Label layoutX="85.0" layoutY="14.0" styleClass="text" stylesheets="@main.css" text="Confirmation Code" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font size="14.5" />
+               </font>
+            </Label>
+            <Label fx:id="code_email_label" layoutX="37.0" layoutY="36.0" prefHeight="70.0" prefWidth="226.0" styleClass="text" stylesheets="@main.css" text="Please enter the code we sent to the email " textAlignment="CENTER" textFill="#989a9e" wrapText="true">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="code_tf" layoutX="76.0" layoutY="111.0" prefHeight="25.0" prefWidth="149.0" />
+            <Label layoutX="108.0" layoutY="144.0" onMouseClicked="#resend_code" prefHeight="19.0" prefWidth="86.0" styleClass="text" stylesheets="@main.css" text="RESEND CODE" textAlignment="CENTER" textFill="#7287ed" wrapText="true">
+               <font>
+                  <Font name="Arial Narrow Bold" size="12.0" />
+               </font>
+            </Label>
+            <Button layoutX="75.0" layoutY="181.0" mnemonicParsing="false" onMouseClicked="#confirm_code" prefHeight="36.0" prefWidth="149.0" style="-fx-background-color: #008eff;" styleClass="buttonSign" stylesheets="@main.css" text="Confirm" textFill="WHITE">
+               <font>
+                  <Font name="Arial Bold" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <ImageView fitHeight="19.0" fitWidth="19.0" layoutX="267.0" layoutY="16.0" onMouseClicked="#closePopup">
+               <image>
+                  <Image url="@../../../imgs/close.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="loading_code" fitHeight="25.0" fitWidth="22.0" layoutX="57.0" layoutY="13.0">
+               <image>
+                  <Image url="@../../../imgs/loading.gif" />
+               </image>
+            </ImageView>
+         </children>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+      </Pane>
     </children>
 </AnchorPane>

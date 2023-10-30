@@ -6,6 +6,7 @@ module com.example.sprintjava {
     requires mysql.connector.java;
     requires jbcrypt;
     requires com.auth0.jwt;
+    requires javax.mail;
 
 
     opens com.example.sprintjava to javafx.fxml;

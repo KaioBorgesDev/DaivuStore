@@ -8,9 +8,9 @@ import java.sql.SQLException;
 import java.sql.Connection;
 
 public class ConnectionDb {
-    private static final String LOGIN_BANCO = "yourLogin";
-    private static final String SENHA_BANCO = "yourPassword";
-    private static final String URL_BANCO = "jdbc:mysql://yourUrl?autoReconnect=true&useSSL=false";
+    private static final String LOGIN_BANCO = "aluno";
+    private static final String SENHA_BANCO = "Senai1234";
+    private static final String URL_BANCO = "jdbc:mysql://ESN509VMYSQL:3306/daivu?autoReconnect=true&useSSL=false";
     public static Connection getConnection() {
         Connection conexao = null;
         try {
